@@ -22,6 +22,21 @@ async function run() {
         // tasks collection
         const taskCollection = client.db("to_do_app").collection("tasks");
 
+        // tasks collection API
+
+        // Make API : get all task data from server
+
+        app.get('/tasks', async (req, res) => {
+            const email = req.query.email;
+            const query = { email };
+            const cursor = taskCollection.find(query);
+            const tasks = await cursor.toArray();
+            res.send(tasks);
+        })
+
+
+
+
 
     }
     finally {
