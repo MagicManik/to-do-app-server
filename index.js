@@ -44,6 +44,15 @@ async function run() {
         })
 
 
+        // delete data : delete a specific task data
+
+        app.delete('/task/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await taskCollection.deleteOne(query);
+            res.send(result);
+        })
+
 
     }
     finally {
