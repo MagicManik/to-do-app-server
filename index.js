@@ -32,7 +32,6 @@ async function run() {
         const taskCompleteCollection = client.db("to_do_app").collection("complete");
 
 
-
         // tasks collection API
 
 
@@ -46,6 +45,20 @@ async function run() {
             const tasks = await cursor.toArray();
             res.send(tasks);
         })
+
+
+        app.get('/complete', async (req, res) => {
+            const email = req.query.email;
+            // console.log('email manik', email)
+            const query = { email };
+            const cursor = taskCompleteCollection.find(query);
+            const tasks = await cursor.toArray();
+            res.send(tasks);
+        })
+
+
+
+
 
         // POST task : add a new task
 
